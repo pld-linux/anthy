@@ -71,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog DIARY NEWS README doc/[!M]* doc/MISC
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/anthy-conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/anthy-conf
 %{_datadir}/anthy
 
 %files devel
