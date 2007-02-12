@@ -1,5 +1,5 @@
 Summary:	A Japanese character input system library (with dictionary)
-Summary(pl):	System wprowadzania znak體 japo駍kich (ze s硂wnikiem)
+Summary(pl.UTF-8):   System wprowadzania znak贸w japo艅skich (ze s艂ownikiem)
 Name:		anthy
 Version:	5122
 Release:	1
@@ -16,31 +16,31 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 A Japanese character input system library (with dictionary).
 
-%description -l pl
-System wprowadzania znak體 japo駍kich (ze s硂wnikiem).
+%description -l pl.UTF-8
+System wprowadzania znak贸w japo艅skich (ze s艂ownikiem).
 
 %package devel
 Summary:	Header files for anthy libraries
-Summary(pl):	Pliki nag丑wkowe bibliotek anthy
+Summary(pl.UTF-8):   Pliki nag艂贸wkowe bibliotek anthy
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for anthy libraries.
 
-%description devel -l pl
-Pliki nag丑wkowe bibliotek anthy.
+%description devel -l pl.UTF-8
+Pliki nag艂贸wkowe bibliotek anthy.
 
 %package static
 Summary:	Static anthy libraries
-Summary(pl):	Statyczne biblioteki anthy
+Summary(pl.UTF-8):   Statyczne biblioteki anthy
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static anthy libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczne biblioteki anthy.
 
 %prep
