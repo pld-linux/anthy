@@ -1,3 +1,7 @@
+#
+# TODO:
+#	- emacs mode
+#
 Summary:	A Japanese character input system library (with dictionary)
 Summary(pl.UTF-8):	System wprowadzania znaków japońskich (ze słownikiem)
 Name:		anthy
@@ -78,3 +82,17 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+#   /usr/share/emacs/site-lisp/anthy/anthy-azik.el
+#   /usr/share/emacs/site-lisp/anthy/anthy-azik.elc
+#   /usr/share/emacs/site-lisp/anthy/anthy-conf.el
+#   /usr/share/emacs/site-lisp/anthy/anthy-conf.elc
+#   /usr/share/emacs/site-lisp/anthy/anthy-dic.el
+#   /usr/share/emacs/site-lisp/anthy/anthy-dic.elc
+#   /usr/share/emacs/site-lisp/anthy/anthy-isearch.el
+#   /usr/share/emacs/site-lisp/anthy/anthy-isearch.elc
+#   /usr/share/emacs/site-lisp/anthy/anthy-kyuri.el
+#   /usr/share/emacs/site-lisp/anthy/anthy-kyuri.elc
+#   /usr/share/emacs/site-lisp/anthy/anthy.el
+#   /usr/share/emacs/site-lisp/anthy/anthy.elc
+#   /usr/share/emacs/site-lisp/anthy/leim-list.el
