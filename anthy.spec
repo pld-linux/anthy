@@ -1,15 +1,13 @@
 Summary:	A Japanese character input system library (with dictionary)
 Summary(pl.UTF-8):	System wprowadzania znaków japońskich (ze słownikiem)
 Name:		anthy
-Version:	5122
+Version:	9100h
 Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://dl.sourceforge.jp/anthy/8819/%{name}-%{version}.tar.gz
-# Source0-md5:	f855b2e7a3de33c819ee9eefa652b231
+Source0:	http://dl.sourceforge.jp/anthy/37536/%{name}-%{version}.tar.gz
+# Source0-md5:	1f558ff7ed296787b55bb1c6cf131108
 URL:		http://anthy.sourceforge.jp/
-# URL: http://cannadic.oucrc.org
-# Source1: cannadic-0.93.tar.gz
 BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,12 +43,8 @@ Statyczne biblioteki anthy.
 
 %prep
 %setup -q
-#tar zxf %{_sourcedir}/cannadic-0.93.tar.gz
-#ln -s ../cannadic-0.93/gcanna.t mkanthydic
-#ln -s ../cannadic-0.93/gcannaf.t mkanthydic
 
 %build
-cp -f /usr/share/automake/config.* .
 %configure
 %{__make}
 
@@ -71,17 +65,16 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog DIARY NEWS README doc/[!M]* doc/MISC
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/lib*.so.0
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/anthy-conf
 %{_datadir}/anthy
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
 %{_includedir}/anthy
+%{_pkgconfigdir}/anthy.pc
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-
-#%{_datadir}/emacs/site-lisp/*
