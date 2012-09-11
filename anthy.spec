@@ -106,6 +106,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# (assume that) obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libanthy*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -115,21 +118,31 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog DIARY NEWS README doc/[!M]* doc/MISC
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/lib*.so.0
+%attr(755,root,root) %{_bindir}/anthy-agent
+%attr(755,root,root) %{_bindir}/anthy-dic-tool
+%attr(755,root,root) %{_bindir}/anthy-morphological-analyzer
+%attr(755,root,root) %{_libdir}/libanthy.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libanthy.so.0
+%attr(755,root,root) %{_libdir}/libanthydic.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libanthydic.so.0
+%attr(755,root,root) %{_libdir}/libanthyinput.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libanthyinput.so.0
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/anthy-conf
 %{_datadir}/anthy
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libanthy.so
+%attr(755,root,root) %{_libdir}/libanthydic.so
+%attr(755,root,root) %{_libdir}/libanthyinput.so
 %{_includedir}/anthy
 %{_pkgconfigdir}/anthy.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libanthy.a
+%{_libdir}/libanthydic.a
+%{_libdir}/libanthyinput.a
 
 #   /usr/share/emacs/site-lisp/anthy/anthy-azik.el
 #   /usr/share/emacs/site-lisp/anthy/anthy-azik.elc
