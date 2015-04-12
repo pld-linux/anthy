@@ -9,7 +9,7 @@ Summary:	A Japanese character input system library (with dictionary)
 Summary(pl.UTF-8):	System wprowadzania znaków japońskich (ze słownikiem)
 Name:		anthy
 Version:	9100h
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.jp/anthy/37536/%{name}-%{version}.tar.gz
