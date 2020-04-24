@@ -168,5 +168,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_lispdir}/anthy/leim-list.el
 %if %{with emacs}
 %{_lispdir}/anthy/anthy*.elc
-%{_lispdir}/anthy/leim-list.elc
 %endif
