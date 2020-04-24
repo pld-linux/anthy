@@ -1,21 +1,20 @@
 #
-# TODO:
-#	- emacs mode
-#
 # Conditional build:
-%bcond_without	utf8		# build euc-jp dict
+%bcond_without	emacs	# Emacs-compiled elisp
+%bcond_without	utf8	# euc-jp dict
 #
 Summary:	A Japanese character input system library (with dictionary)
 Summary(pl.UTF-8):	System wprowadzania znaków japońskich (ze słownikiem)
 Name:		anthy
 Version:	9100h
-Release:	3
-License:	GPL
+Release:	4
+License:	LGPL v2+ (library), GPL (dictionary)
 Group:		Libraries
 Source0:	http://dl.sourceforge.jp/anthy/37536/%{name}-%{version}.tar.gz
 # Source0-md5:	1f558ff7ed296787b55bb1c6cf131108
 URL:		http://anthy.sourceforge.jp/
 BuildRequires:	automake
+%{?with_emacs:BuildRequires:	emacs}
 BuildRequires:	iconv
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -48,6 +47,19 @@ Static anthy libraries.
 
 %description static -l pl.UTF-8
 Statyczne biblioteki anthy.
+
+%package -n emacs-anthy
+Summary:	Emacs anthy package
+Summary(pl.UTF-8):	Pakiet anthy dla Emacsa
+Group:		Applications/Editors
+Requires:	%{name} = %{version}-%{release}
+Requires:	emacs
+
+%description -n emacs-anthy
+Emacs anthy package.
+
+%description -n emacs-anthy -l pl.UTF-8
+Pakiet anthy dla Emacsa.
 
 %prep
 %setup -q
@@ -97,14 +109,19 @@ touch -r mkworddic/dict.args.in{-orig,}
 %endif
 
 %build
-%configure
+%configure \
+	--with-lispdir=%{_lispdir}
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+%if %{without emacs}
+	EMACS=/bin/true
+%endif
 
 # (assume that) obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libanthy*.la
@@ -144,16 +161,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libanthydic.a
 %{_libdir}/libanthyinput.a
 
-#   /usr/share/emacs/site-lisp/anthy/anthy-azik.el
-#   /usr/share/emacs/site-lisp/anthy/anthy-azik.elc
-#   /usr/share/emacs/site-lisp/anthy/anthy-conf.el
-#   /usr/share/emacs/site-lisp/anthy/anthy-conf.elc
-#   /usr/share/emacs/site-lisp/anthy/anthy-dic.el
-#   /usr/share/emacs/site-lisp/anthy/anthy-dic.elc
-#   /usr/share/emacs/site-lisp/anthy/anthy-isearch.el
-#   /usr/share/emacs/site-lisp/anthy/anthy-isearch.elc
-#   /usr/share/emacs/site-lisp/anthy/anthy-kyuri.el
-#   /usr/share/emacs/site-lisp/anthy/anthy-kyuri.elc
-#   /usr/share/emacs/site-lisp/anthy/anthy.el
-#   /usr/share/emacs/site-lisp/anthy/anthy.elc
-#   /usr/share/emacs/site-lisp/anthy/leim-list.el
+%files -n emacs-anthy
+%defattr(644,root,root,755)
+%dir %{_lispdir}/anthy
+%{_lispdir}/anthy/anthy*.el
+%{_lispdir}/anthy/leim-list.el
+%if %{with emacs}
+%{_lispdir}/anthy/anthy*.elc
+%{_lispdir}/anthy/leim-list.elc
+%endif
