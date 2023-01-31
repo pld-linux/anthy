@@ -10,9 +10,10 @@ Version:	9100h
 Release:	4
 License:	LGPL v2+ (library), GPL (dictionary)
 Group:		Libraries
+#Source0Download: https://osdn.net/projects/anthy/
 Source0:	http://dl.sourceforge.jp/anthy/37536/%{name}-%{version}.tar.gz
 # Source0-md5:	1f558ff7ed296787b55bb1c6cf131108
-URL:		http://anthy.sourceforge.jp/
+URL:		http://anthy.osdn.jp/
 BuildRequires:	automake
 %{?with_emacs:BuildRequires:	emacs}
 BuildRequires:	iconv
